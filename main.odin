@@ -10,6 +10,11 @@ main :: proc() {
 	rl.InitWindow(640, 480, "Samir Emulator")
 	rl.SetTargetFPS(60)
 
+	bird := rl.LoadImage("./boytoy.png")
+	rl.ImageResize(&bird, 130, 80)
+	texture := rl.LoadTextureFromImage(bird)
+	rl.UnloadImage(bird)
+
 	player_pos: f32 = 0
 	player_vel: f32 = 0
 
@@ -28,7 +33,8 @@ main :: proc() {
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.BLACK)
 
-		rl.DrawRectangle(50, i32(player_pos), 60, 60, rl.RED)
+		// rl.DrawRectangle(50, i32(player_pos), 60, 60, rl.RED)
+		rl.DrawTexture(texture, 50, i32(player_pos), rl.WHITE)
 
 		rl.EndDrawing()
 	}
